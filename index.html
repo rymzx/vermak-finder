@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Caver</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.ts"></script>
+  </head>
+  <body>
+    <header>
+      <h1 style="position: absolute; right: 0; top: -10px; padding-right: 15px">
+        Caver
+      </h1>
+    </header>
+    <div
+      class="vermak-search"
+      style="
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        text-align: center;
+        /* background-color: red; */
+        width: 50%;
+
+        margin-bottom: 0;
+        padding-left: 100px;
+        padding-top: 20px;
+      "
+    >
+      <div id="findvermak" style="font-size: 15px; font-weight: bolder">
+        cari vermak :
+      </div>
+
+      <div id="locationField">
+        <input id="autocomplete" placeholder="masukan kota" type="text" />
+      </div>
+
+      <!-- <div id="controls">
+        <select id="country">
+          <option value="dpk" selected>Indonesia</option>
+          <option value="dpk" selected>Depok</option>
+          <option value="dpk" selected>Depok</option>
+          <option value="dpk" selected>Depok</option>
+        </select>
+      </div> -->
+    </div>
+
+    <div id="map"></div>
+
+    <div id="listing">
+      <table id="resultsTable">
+        <tbody id="results"></tbody>
+      </table>
+    </div>
+
+    <div style="display: none">
+      <div id="info-content">
+        <table>
+          <tr id="iw-url-row" class="iw_table_row">
+            <td id="iw-icon" class="iw_table_icon"></td>
+            <td id="iw-url"></td>
+          </tr>
+          <tr id="iw-address-row" class="iw_table_row">
+            <td class="iw_attribute_name">Address:</td>
+            <td id="iw-address"></td>
+          </tr>
+          <tr id="iw-phone-row" class="iw_table_row">
+            <td class="iw_attribute_name">Telephone:</td>
+            <td id="iw-phone"></td>
+          </tr>
+          <tr id="iw-rating-row" class="iw_table_row">
+            <td class="iw_attribute_name">Rating:</td>
+            <td id="iw-rating"></td>
+          </tr>
+          <tr id="iw-website-row" class="iw_table_row">
+            <td class="iw_attribute_name">Website:</td>
+            <td id="iw-website"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises.
+      See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
+      for more information.
+      -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
