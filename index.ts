@@ -1,12 +1,6 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 // This example uses the autocomplete feature of the Google Places API.
-// It allows the user to find all vermak in a given place, within a given
-// country. It then displays markers for all the vermak returned,
+// It allows the user to find all hotels in a given place, within a given
+// country. It then displays markers for all the hotels returned,
 // with on-click details for each hotel.
 
 // This example requires the Places library. Include the libraries=places
@@ -19,7 +13,7 @@ let infoWindow: google.maps.InfoWindow;
 let markers: google.maps.Marker[] = [];
 let autocomplete: google.maps.places.Autocomplete;
 
-const countryRestrict = { country: "idn" };
+const countryRestrict = { country: "us" };
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
@@ -28,21 +22,15 @@ const countries: Record<
   string,
   { center: google.maps.LatLngLiteral; zoom: number }
 > = {
-  idn: {
-    center: { lat: -0.789275, lng: 113.921326 },
-    zoom: 5,
+  dpk: {
+    center: { lat: -6.402905, lng: 106.778419 },
+    zoom: 12.5,
   },
-
-  // dpk: {
-  //   center: { lat: -6.39791, lng: 106.822083 },
-  //   zoom: 12,
-  // },
 };
-
 function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: countries["idn"].zoom,
-    center: countries["idn"].center,
+    zoom: countries["dpk"].zoom,
+    center: countries["dpk"].center,
     mapTypeControl: false,
     panControl: false,
     zoomControl: false,
@@ -54,15 +42,22 @@ function initMap(): void {
   });
 
   // Create the autocomplete object and associate it with the UI input control.
-  // Restrict the search to the default country, and to place type "cities".
+  // Restrict the search to Depok, Indonesia, and only show subdistricts.
   autocomplete = new google.maps.places.Autocomplete(
     document.getElementById("autocomplete") as HTMLInputElement,
     {
-      types: ["(cities)"],
-      componentRestrictions: countryRestrict,
-      fields: ["geometry"],
+      types: ["geocode"], // Restrict to geocode
+      strictBounds: true, // Apply strict bounds
     }
   );
+
+  // Set the bounds to Depok, Indonesia
+  const depokBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(-6.4708, 106.7801), // Southwest corner of Depok
+    new google.maps.LatLng(-6.3573, 106.9163) // Northeast corner of Depok
+  );
+  autocomplete.setBounds(depokBounds);
+
   places = new google.maps.places.PlacesService(map);
 
   autocomplete.addListener("place_changed", onPlaceChanged);
@@ -73,6 +68,41 @@ function initMap(): void {
     setAutocompleteCountry
   );
 }
+
+// function initMap(): void {
+//   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+//     zoom: countries["dpk"].zoom,
+//     center: countries["dpk"].center,
+//     mapTypeControl: false,
+//     panControl: false,
+//     zoomControl: false,
+//     streetViewControl: false,
+//   });
+
+//   infoWindow = new google.maps.InfoWindow({
+//     content: document.getElementById("info-content") as HTMLElement,
+//   });
+
+//   // Create the autocomplete object and associate it with the UI input control.
+//   // Restrict the search to the default country, and to place type "cities".
+//   autocomplete = new google.maps.places.Autocomplete(
+//     document.getElementById("autocomplete") as HTMLInputElement,
+//     {
+//       types: ["(cities)"],
+//       componentRestrictions: countryRestrict,
+//       fields: ["geometry"],
+//     }
+//   );
+//   places = new google.maps.places.PlacesService(map);
+
+//   autocomplete.addListener("place_changed", onPlaceChanged);
+
+//   // Add a DOM event listener to react when the user selects a country.
+//   (document.getElementById("country") as HTMLSelectElement).addEventListener(
+//     "change",
+//     setAutocompleteCountry
+//   );
+// }
 
 // When the user selects a city, get the place details for the city and
 // zoom the map in on the city.
@@ -85,20 +115,13 @@ function onPlaceChanged() {
     search();
   } else {
     (document.getElementById("autocomplete") as HTMLInputElement).placeholder =
-      "masukan kelurahan";
+      "Masukkan nama kelurahan";
   }
 }
 
-// mencari vermal the selected city, within the viewport of the map.
+// Search for hotels in the selected city, within the viewport of the map.
 function search() {
-  interface ISearch {
-    bounds: google.maps.LatLngBounds;
-    types: string[];
-    keyword: string[];
-  }
-
-  // Membuat objek pencarian
-  const search: ISearch = {
+  const search = {
     bounds: map.getBounds() as google.maps.LatLngBounds,
     types: ["tailor"],
     keyword: ["vermak"],
@@ -304,4 +327,3 @@ declare global {
   }
 }
 window.initMap = initMap;
-export {};
