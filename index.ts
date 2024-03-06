@@ -13,7 +13,7 @@ let infoWindow: google.maps.InfoWindow;
 let markers: google.maps.Marker[] = [];
 let autocomplete: google.maps.places.Autocomplete;
 
-const countryRestrict = { country: "us" };
+const countryRestrict = { country: "idn" };
 const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
@@ -68,41 +68,6 @@ function initMap(): void {
     setAutocompleteCountry
   );
 }
-
-// function initMap(): void {
-//   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-//     zoom: countries["dpk"].zoom,
-//     center: countries["dpk"].center,
-//     mapTypeControl: false,
-//     panControl: false,
-//     zoomControl: false,
-//     streetViewControl: false,
-//   });
-
-//   infoWindow = new google.maps.InfoWindow({
-//     content: document.getElementById("info-content") as HTMLElement,
-//   });
-
-//   // Create the autocomplete object and associate it with the UI input control.
-//   // Restrict the search to the default country, and to place type "cities".
-//   autocomplete = new google.maps.places.Autocomplete(
-//     document.getElementById("autocomplete") as HTMLInputElement,
-//     {
-//       types: ["(cities)"],
-//       componentRestrictions: countryRestrict,
-//       fields: ["geometry"],
-//     }
-//   );
-//   places = new google.maps.places.PlacesService(map);
-
-//   autocomplete.addListener("place_changed", onPlaceChanged);
-
-//   // Add a DOM event listener to react when the user selects a country.
-//   (document.getElementById("country") as HTMLSelectElement).addEventListener(
-//     "change",
-//     setAutocompleteCountry
-//   );
-// }
 
 // When the user selects a city, get the place details for the city and
 // zoom the map in on the city.

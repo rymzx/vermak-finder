@@ -10,45 +10,90 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <script type="module" src="./index.ts"></script>
   </head>
   <body>
-    <header>
-      <h1 style="position: absolute; right: 0; top: -10px; padding-right: 15px">
-        Caver
-      </h1>
-    </header>
+    <div
+      class="homepage-section"
+      style="text-align: center; padding: 50px 20px; height: 100%; background-color: #f0f0f0"
+    >
+      <h2>Selamat Datang di Caver!</h2>
+      <p>Tempat pencarian vermak terbaik di Depok.</p>
+      <div style="margin-top: 20px">
+        <p>
+          Langkah langkah mencari vermak:
+        </p>
+        <ul style="list-style: none; padding: 0">
+          <li>
+            <strong>1.</strong>Klik a Service Now atau scroll kebawah
+          </li>
+          <li>
+            <strong>2.</strong> Masukkan nama kelurahan anda lalu tekan enter.
+          </li>
+          <li>
+            <strong>3.</strong> Setelah anda menekan enter akan ada pilihan pilihan vermak terdekat silahkan pilih salah satu.
+          </li>
+         
+            <strong>4.</strong> Jika anda ingin langsung diarahkan ke Google Maps anda bisa menekan titik yang ada pada map website Caver 
+
+          </li>
+        </ul>
+        <p>SELAMAT BERPETUALANG!</p>
+      </div>
+      <div style="margin-top: 30px">
+        <a
+          href="#vermak-search"
+          style="
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+          "
+          >Find a Service Now</a
+        >
+      </div>
+    </div>
+
     <div
       class="vermak-search"
+      id="vermak-search"
       style="
         justify-content: center;
         align-items: center;
         display: flex;
         text-align: center;
         /* background-color: red; */
-        width: 50%;
+        width: 80%;
 
-        margin-bottom: 0;
         padding-left: 100px;
-        padding-top: 20px;
+
+        gap: 100px;
       "
     >
-      <div id="findvermak" style="font-size: 15px; font-weight: bolder">
-        cari vermak di Depok:
+      <div style="display: flex; width: 50%; padding-top: 100px">
+        <div id="findvermak" style="font-size: 15px; font-weight: bolder">
+          cari vermak di Depok:
+        </div>
+
+        <div id="locationField">
+          <input
+            id="autocomplete"
+            placeholder="masukan Nama Kelurahan"
+            type="text"
+          />
+        </div>
       </div>
 
-      <div id="locationField">
-        <input id="autocomplete" placeholder="masukan Nama Jalan" type="text" />
+      <div style="justify-content: end; width: 50%; padding-top: 100px">
+        <h1>Caver</h1>
       </div>
-
-      <!-- <div id="controls">
-        <select id="country">
-          <option value="dpk" selected>Indonesia</option>
-          <option value="dpk" selected>Depok</option>
-          <option value="dpk" selected>Depok</option>
-          <option value="dpk" selected>Depok</option>
-        </select>
-      </div> -->
     </div>
 
     <div id="map"></div>
@@ -94,7 +139,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqSjyrgX3wFjMlttrhPwDGJlLnU1qhzzA&callback=initMap&libraries=places&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
       defer
     ></script>
   </body>
