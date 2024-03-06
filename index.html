@@ -19,9 +19,49 @@
     <script type="module" src="./index.ts"></script>
   </head>
   <body>
+    <nav style="position: fixed;width:100%; ">
+      <div
+        class="vermak-search"
+        id="vermak-search"
+        style="
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          text-align: center;
+          /* background-color: red; */
+          width: 95%;
+          padding-left: 100px;
+          gap: 100px;
+        "
+      >
+        <div style="display: flex; width: 50%; padding-top: 100px">
+          <div id="findvermak" style="font-size: 15px; font-weight: bolder">
+            cari vermak di Depok:
+          </div>
+
+          <div id="locationField">
+            <input
+              id="autocomplete"
+              placeholder="masukan Nama Kelurahan"
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div style="justify-content: end; width: 50%; padding-top: 100px">
+          <h1>Caver</h1>
+        </div>
+      </div>
+      <div id="listing">
+      <table id="resultsTable">
+        <tbody id="results"></tbody>
+      </table>
+    </div>
+    </nav>
+
     <div
       class="homepage-section"
-      style="text-align: center; padding: 50px 20px; height: 100%; background-color: #f0f0f0"
+      style="text-align: center;  height: 100%; background-color: #f0f0f0; margin:auto; padding-top: 250px;" 
     >
       <h2>Selamat Datang di Caver!</h2>
       <p>Tempat pencarian vermak terbaik di Depok.</p>
@@ -48,7 +88,7 @@
       </div>
       <div style="margin-top: 30px">
         <a
-          href="#vermak-search"
+          href="#map"
           style="
             padding: 10px 20px;
             background-color: blue;
@@ -61,42 +101,7 @@
       </div>
     </div>
 
-    <div
-      class="vermak-search"
-      id="vermak-search"
-      style="
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        text-align: center;
-        /* background-color: red; */
-        width: 80%;
-
-        padding-left: 100px;
-
-        gap: 100px;
-      "
-    >
-      <div style="display: flex; width: 50%; padding-top: 100px">
-        <div id="findvermak" style="font-size: 15px; font-weight: bolder">
-          cari vermak di Depok:
-        </div>
-
-        <div id="locationField">
-          <input
-            id="autocomplete"
-            placeholder="masukan Nama Kelurahan"
-            type="text"
-          />
-        </div>
-      </div>
-
-      <div style="justify-content: end; width: 50%; padding-top: 100px">
-        <h1>Caver</h1>
-      </div>
-    </div>
-
-    <div id="map"></div>
+    <div id="map" style="z-index: -1; padding-top: 100px;"></div>
 
     <div id="listing">
       <table id="resultsTable">
@@ -138,9 +143,8 @@
       See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
       for more information.
       -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
-      defer
-    ></script>
-  </body>
+ 
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6UWM2fKzv7X-AmBGkEbjBhLBjBZZ_5aU&callback=initMap">
+</script>  </body>
 </html>
